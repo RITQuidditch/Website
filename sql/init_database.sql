@@ -1,0 +1,12 @@
+CREATE DATABASE IF NOT EXISTS ritquidditch;
+
+USE ritquidditch;
+
+CREATE TABLE IF NOT EXISTS people (
+    id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(48) NOT NULL,
+    title VARCHAR(128),
+    email VARCHAR(64), 
+    bigpic VARCHAR(32) DEFAULT 'NOBIGPIC.png',
+    smpic VARCHAR(32) DEFAULT 'NOSMPIC.png'
+);

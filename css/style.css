@@ -1,0 +1,57 @@
+/* SIZE AND ALIGNMENT */
+body, div.bounds, div.banner, div.nav_bar, div.content, a.anchor
+{
+    width: 720px;
+    margin: auto;
+    text-align: center;
+}
+
+/* BACKGROUND */
+body
+{
+    background-image:url("../images/back.png");
+    background-repeat:repeat-x;
+    background-color: #cccccc;
+}
+
+div.bounds
+{
+    border-style: solid;
+    border-color: #000000;
+    border-width: 1px;
+    background-color: #FFFFFF;
+}
+
+/* FONT */
+a.nav_button, div.content, a.anchor
+{
+    text-decoration: none;
+    font-family:"Arial", Helvetica, sans-serif;
+}
+
+/* ANCHORS */
+a.nav_button, a.anchor
+{
+
+    display:block;
+    color:#FFFFFF;
+    background-color:#000000;
+    
+}
+
+/* NAV_BUTTONS */
+a.nav_button
+{
+    float: left;
+
+    width:120px;
+
+    text-align: center;
+    padding: 2px 0px 2px;
+
+}
+a.nav_button:hover, a.nav_button:active
+{
+    color:#000000;
+    background-color:#FFFFFF;
+}
