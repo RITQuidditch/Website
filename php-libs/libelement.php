@@ -11,7 +11,7 @@ function element_nav()
     echo "    <a class=\"nav_button\" href=\"index.php\">HOME</a>";
     echo "    <a class=\"nav_button\" href=\"news.php\">NEWS</a>";
     echo "    <a class=\"nav_button\" href=\"about.php\">ABOUT</a>";
-    echo "    <a class=\"nav_button\" href=\"gallary.php\">GALLARY</a>";
+    echo "    <a class=\"nav_button\" href=\"calendar.php\">CALENDAR</a>";
     echo "    <a class=\"nav_button\" href=\"contact.php\">CONTACT</a>";
     echo "    <a class=\"nav_button\" href=\"faq.php\">FAQ</a>";
     echo "</div>";

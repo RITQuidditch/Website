@@ -14,4 +14,9 @@ function info_db()
 {
     return "ritquidditch";
 }
+
+function info_blogID()
+{
+    return '4921289786469378725';
+}
 ?>

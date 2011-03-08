@@ -5,9 +5,11 @@
     <!-- PHP INCLUDES -->
     <?php 
         require_once( "php-libs/libelement.php" );
+        require_once( "php-libs/libnews.php" );
     ?>
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link rel="stylesheet" type="text/css" href="css/style-news.css" />
 </head>
 
 <body>
@@ -18,7 +20,13 @@
         <!-- CONTENT -->
         <div class="content">
 
-            Content goes here.
+            <h1>News</h1>
+
+            <p>All the latest ( Quidditch ) news fit to print!</p>
+
+            <?php
+                news_display_latest( 5 );
+            ?>
 
         </div>
 
