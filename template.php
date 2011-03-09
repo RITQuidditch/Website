@@ -4,16 +4,19 @@
 <head>
     <!-- PHP INCLUDES -->
     <?php 
-        require_once( "php-libs/libelement.php" );
+        require_once( "php/Render.php" );
     ?>
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="css/style.css" />
 </head>
 
 <body>
-    <div class="bounds" >
+
+    <?php $render = new RITQ_Render() ?>
+
+    <div class="canvas" >
         <!-- HEADER -->
-        <?php element_header() ?>
+        <?php $render->header() ?>
 
         <!-- CONTENT -->
         <div class="content">
@@ -23,7 +26,7 @@
         </div>
 
         <!-- FOOTER-->
-        <?php element_footer() ?>
+        <?php $render->footer() ?>
     </div>
 </body>
 

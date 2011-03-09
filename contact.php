@@ -4,47 +4,45 @@
 <head>
     <!-- PHP INCLUDES -->
     <?php 
-        require_once( "php-libs/libelement.php" );
-        require_once( "php-libs/libdb.php" );
-        require_once( "php-libs/libcontact.php" );
+        require_once( "php/Render.php" );
+        require_once( "php/Contact.php" );
+        require_once( "php/ContactFactory.php" );
     ?>
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="css/style.css" />
-    <link rel="stylesheet" type="text/css" href="css/style_contact.css" />
-
-
 </head>
 
 <body>
-    <div class="bounds" >
+
+    <?php $render = new RITQ_Render() ?>
+
+    <div class="canvas" >
         <!-- HEADER -->
-        <?php element_header() ?>
+        <?php $render->header() ?>
 
         <!-- CONTENT -->
         <div class="content">
 
-            <?php $link = db_connect() ?>
+            <h1 class="title" >Contact</h1>
 
-            <h1>Contact</h1>
+            <p class="notice" >Feel free to contact our club GMail account or anyone of our E-Board members. 
+            <br /><br />
+            <a href='mailto:RITQuidditch@GMail.com' >RITQuidditch@GMail.com</a>
+            </p>
 
-            <p class="intro">Feel free to contact our club GMail account, or anyone of our E-Board members.</p>
-
-            <a href="RITQuidditch@Gmail.com">RITQuidditch@GMail.com</a>
-            <br/>
-
-            <table border="0" width="720">
-                <tr><?php contact_get( $link, "President" ); ?></tr>
-                <tr><?php contact_get( $link, "Vice President" ); ?></tr>
-                <tr><?php contact_get( $link, "Treasurer" ); ?></tr>
-                <tr><?php contact_get( $link, "Secretary" ); ?></tr>
-            </table>
-
-            <?php db_close( $link ) ?>
+            <?php
+            $conFact = new RITQ_ContactFactory( 'RITQuidditch', 'Levi000sa', '0At4gh-_5iKZhdDkyXzFjeFp4ZEdsR2N5QWdQYXowdEE', '1' );
+            $contacts = $conFact->getContacts();
+            foreach ( $contacts as $contact )
+            {
+                $render->contact( $contact );
+            }
+            ?>
 
         </div>
 
         <!-- FOOTER-->
-        <?php element_footer() ?>
+        <?php $render->footer() ?>
     </div>
 </body>
 

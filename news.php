@@ -4,34 +4,42 @@
 <head>
     <!-- PHP INCLUDES -->
     <?php 
-        require_once( "php-libs/libelement.php" );
-        require_once( "php-libs/libnews.php" );
+        require_once( "php/Render.php" );
+        require_once( "php/NewsFactory.php" );
     ?>
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="css/style.css" />
-    <link rel="stylesheet" type="text/css" href="css/style-news.css" />
 </head>
 
 <body>
-    <div class="bounds" >
+
+    <?php $render = new RITQ_Render() ?>
+
+    <div class="canvas" >
         <!-- HEADER -->
-        <?php element_header() ?>
+        <?php $render->header() ?>
 
         <!-- CONTENT -->
         <div class="content">
 
-            <h1>News</h1>
+            <h1 class="title">News</h1>
 
-            <p>All the latest ( Quidditch ) news fit to print!</p>
+            <p class="notice">All the (Quidditch) News That's Fit to Print</p>
 
             <?php
-                news_display_latest( 5 );
+                $factory = new RITQ_NewsFactory( 'RITQuidditch', 'Levi000sa', '4921289786469378725' );
+
+                $newslist = $factory->getNewsInterval( 0, 5 );
+                foreach ( $newslist AS $news )
+                {
+                    $render->news( $news );
+                }
             ?>
 
         </div>
 
         <!-- FOOTER-->
-        <?php element_footer() ?>
+        <?php $render->footer() ?>
     </div>
 </body>
 

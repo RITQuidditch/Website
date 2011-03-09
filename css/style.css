@@ -1,9 +1,15 @@
 /* SIZE AND ALIGNMENT */
-body, div.bounds, div.banner, div.nav_bar, div.content, a.anchor
+body, div.canvas, div.header, div.nav_bar, div.footer
 {
     width: 720px;
     margin: auto;
     text-align: center;
+}
+div.content
+{
+    width: 720px;
+    margin: auto;
+    text-align: left;
 }
 
 /* BACKGROUND */
@@ -14,7 +20,7 @@ body
     background-color: #cccccc;
 }
 
-div.bounds
+div.canvas
 {
     border-style: solid;
     border-color: #000000;
@@ -23,14 +29,14 @@ div.bounds
 }
 
 /* FONT */
-a.nav_button, div.content, a.anchor
+a.nav_button 
 {
     text-decoration: none;
     font-family:"Arial", Helvetica, sans-serif;
 }
 
 /* ANCHORS */
-a.nav_button, a.anchor
+a.nav_button, div.footer
 {
 
     display:block;
@@ -54,4 +60,40 @@ a.nav_button:hover, a.nav_button:active
 {
     color:#000000;
     background-color:#FFFFFF;
+}
+
+h1.title, h3.section
+{
+    font-family: "Garamond", Georgia, serif;
+}
+
+h1.title
+{
+    text-align: center;
+}
+
+h3.section
+{
+    text-align: left;
+}
+
+p.body_left, p.body_right, p.notice
+{
+    text-decoration: none;
+    font-family: "Arial", Helvetica, sans-serif;
+}
+
+p.notice
+{
+    text-align: center;
+}
+
+p.body_left 
+{
+    text-align: left;
+}
+
+p.body_right
+{
+    text-align: right;
 }
