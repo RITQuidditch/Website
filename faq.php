@@ -21,7 +21,20 @@
         <!-- CONTENT -->
         <div class="content">
 
-            Content goes here.
+            <h1 class="title">FAQ</h1>
+
+            <p class="notice">Get to Know More About the Quidditch Club</p>
+
+            <?php
+                $faq = new RITQ_FAQ( "xml/FAQ.xml" );
+
+                foreach ( $faq->getEntries() AS $entry )
+                {
+                    $render->faqentry( $entry );
+                }
+
+            ?>
+
 
         </div>
 
