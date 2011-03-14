@@ -4,7 +4,7 @@ require_once( "php/FAQEntry.php" );
 
 class RITQ_FAQ
 {
-    $entries = array();
+    private $entries = array();
 
     public function __construct( $filename )
     {
