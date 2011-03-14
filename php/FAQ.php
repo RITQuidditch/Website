@@ -21,11 +21,11 @@ class RITQ_FAQ
                 if ( $node->nodeName == "entry" )
                 {
 
+                    $question = "No Question";
+                    $answer = "No Answer";
+
                     foreach ( $node->childNodes AS $entryNode )
                     {
-
-                        $question = "No Question";
-                        $answer = "No Answer";
 
                         switch ( $entryNode->nodeName )
                         {
@@ -37,10 +37,11 @@ class RITQ_FAQ
                                 break;
                         }
 
-                        $entry = new RITQ_FAQEntry( $question, $answer );
-                        $this->entries[] = $entry;
-
                     }
+
+                    $entry = new RITQ_FAQEntry( $question, $answer );
+                    $this->entries[] = $entry;
+
                 }
             }
         }
