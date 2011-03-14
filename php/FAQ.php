@@ -1,5 +1,7 @@
 <?php
 
+require_once( "php/FAQEntry.php" );
+
 class RITQ_FAQ
 {
     $entries = array();

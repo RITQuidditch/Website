@@ -5,6 +5,7 @@
     <!-- PHP INCLUDES -->
     <?php 
         require_once( "php/Render.php" );
+        require_once( "php/FAQ.php" );
     ?>
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="css/style.css" />
