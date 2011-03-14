@@ -37,7 +37,7 @@ class RITQ_FAQ
                                 break;
                         }
 
-                        $entry = new Entry( $question, $answer );
+                        $entry = new RITQ_FAQEntry( $question, $answer );
                         $this->entries[] = $entry;
 
                     }
