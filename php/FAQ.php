@@ -15,7 +15,7 @@ class RITQ_FAQ
         if ( $root->nodeName == "faq" )
         {
 
-            foreach ( $x->childNodes AS $node )
+            foreach ( $root->childNodes AS $node )
             {
 
                 if ( $node->nodeName == "entry" )
