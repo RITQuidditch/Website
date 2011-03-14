@@ -47,5 +47,12 @@ class RITQ_Render
         echo '<p class="body_left" >'.$news->getDate()->getFormated( "%M %d, %y" ).'</p>'."\n";
         echo '<p class="body_left" >'.$news->getContent().'</p>'."\n";
     }
+
+    function faqentry( $entry )
+    {
+        echo '<hr />'."\n";
+        echo '<h3 class="section" >'.$entry->getQuestion().'</h3>'."\n";
+        echo '<p class="body_left" >'.$entry->getAnswer().'</p>'."\n";
+    }
 }
 ?>
