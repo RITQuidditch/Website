@@ -7,8 +7,8 @@ class RITQ_FAQEntry
 
     public function __construct( $question, $answer )
     {
-        $this->question = question;
-        $this->answer = answer;
+        $this->question = $question;
+        $this->answer = $answer;
     }
 
     public function getQuestion()
