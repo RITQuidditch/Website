@@ -97,3 +97,8 @@ p.body_right
 {
     text-align: right;
 }
+
+p.body_center
+{
+    text-align: center;
+}
