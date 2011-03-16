@@ -54,5 +54,12 @@ class RITQ_Render
         echo '<h3 class="section" >'.$entry->getQuestion().'</h3>'."\n";
         echo '<p class="body_left" >'.$entry->getAnswer().'</p>'."\n";
     }
+
+    function aboutentry( $entry )
+    {
+        echo '<hr />'."\n";
+        echo '<h3 class="section" >'.$entry->getTitle().'</h3>'."\n";
+        echo '<p class="body_left" >'.$entry->getBody().'</p>'."\n";
+    }
 }
 ?>
