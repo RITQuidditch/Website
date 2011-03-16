@@ -6,6 +6,7 @@
     <?php 
         require_once( "php/Render.php" );
         require_once( "php/NewsFactory.php" );
+        require_once( "php/Info.php" );
     ?>
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="css/style.css" />
@@ -13,7 +14,10 @@
 
 <body>
 
-    <?php $render = new RITQ_Render() ?>
+    <?php 
+        $render = new RITQ_Render();
+        $info = new RITQ_Info( "xml/Info.xml" );
+    ?>
 
     <div class="canvas" >
         <!-- HEADER -->
@@ -27,7 +31,7 @@
             <p class="notice">All the (Quidditch) News That's Fit to Print</p>
 
             <?php
-                $factory = new RITQ_NewsFactory( 'RITQuidditch', 'Levi000sa', '4921289786469378725' );
+                $factory = new RITQ_NewsFactory( $info->getUser(), $info->getPass(), $info->getBlogId() );
 
                 $newslist = $factory->getNewsInterval( 0, 5 );
                 foreach ( $newslist AS $news )

@@ -7,6 +7,7 @@
         require_once( "php/Render.php" );
         require_once( "php/Contact.php" );
         require_once( "php/ContactFactory.php" );
+        require_once( "php/Info.php" );
     ?>
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="css/style.css" />
@@ -14,7 +15,10 @@
 
 <body>
 
-    <?php $render = new RITQ_Render() ?>
+    <?php 
+        $render = new RITQ_Render();
+        $info = new RITQ_Info( "xml/Info.xml" );
+    ?>
 
     <div class="canvas" >
         <!-- HEADER -->
@@ -31,7 +35,7 @@
             </p>
 
             <?php
-            $conFact = new RITQ_ContactFactory( 'RITQuidditch', 'Levi000sa', '0At4gh-_5iKZhdDkyXzFjeFp4ZEdsR2N5QWdQYXowdEE', '1' );
+            $conFact = new RITQ_ContactFactory( $info->getUser(), $info->getPass(), $info->getContactsId(), $info->getContactsWS() );
             $contacts = $conFact->getContacts();
             foreach ( $contacts as $contact )
             {
