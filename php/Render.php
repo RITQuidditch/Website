@@ -10,11 +10,11 @@ class RITQ_Render
         echo '<img src="images/banner.png" />'."\n";
         echo '<div class="nav_bar">'."\n";
         echo '<a class="nav_button" href="index.php">HOME</a>'."\n";
-        echo '<a class="nav_button" href="news.php">NEWS</a>'."\n";
         echo '<a class="nav_button" href="about.php">ABOUT</a>'."\n";
+        echo '<a class="nav_button" href="news.php">NEWS</a>'."\n";
         echo '<a class="nav_button" href="calendar.php">CALENDAR</a>'."\n";
-        echo '<a class="nav_button" href="contact.php">CONTACT</a>'."\n";
         echo '<a class="nav_button" href="faq.php">FAQ</a>'."\n";
+        echo '<a class="nav_button" href="contact.php">CONTACT</a>'."\n";
         echo '</div>';
         echo '</div>';
     }
