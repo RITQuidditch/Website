@@ -1,6 +1,7 @@
 <?php
 
-require_once( "php/Contact.php" );
+/*
+require_once( "php/ContactEntry.php" );
 require_once( "Zend/Gdata/Spreadsheets.php" );
 require_once( "Zend/Gdata/Spreadsheets.php" );
 require_once( "Zend/Gdata/Spreadsheets/ListQuery.php" );
@@ -62,9 +63,10 @@ class RITQ_ContactFactory
                         break;
                 }
             }
-            $result[] = new RITQ_Contact( $name, $title, $email, $picture );
+            $result[] = new RITQ_ContactEntry( $name, $title, $email, $picture );
         }
         return $result;
     }
 }
+*/
 ?>

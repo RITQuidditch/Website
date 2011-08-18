@@ -1,39 +1,80 @@
 <?php
+
+require_once( "php/ContactEntry.php" );
+
 class RITQ_Contact
 {
-    private $name;
-    private $title;
-    private $email;
-    private $picture;
+    private $entries = array();
 
-    public function __construct( $name = '', $title = '', 
-        $email = '', $picture = '' )
+    public function __construct( $filename )
     {
-        $this->name = $name;
-        $this->title = $title;
-        $this->email = $email;
-        $this->picture = $picture;
+        $xmlDoc = new DOMDocument();
+        $xmlDoc->load( $filename );
+
+        $root = $xmlDoc->documentElement;
+        if ( $root->nodeName == "contact" )
+        {
+            foreach ( $root->childNodes AS $node )
+            {
+                if ( $node->nodeName == "entry" )
+                {
+                    $name = "No Name";
+                    $title = "No Title";
+                    $email = "No Email";
+                    $picture = "No Picture";
+
+                    foreach ( $node->childNodes AS $entryNode )
+                    {
+                        switch ( $entryNode->nodeName )
+                        {
+                        case "name":
+                            $name = $entryNode->textContent;
+                            break;
+                        case "title":
+                            $title = $entryNode->textContent;
+                            break;
+                        case "email":
+                            $email = $entryNode->textContent;
+                            break;
+                        case "picture":
+                            $picture = $entryNode->textContent;
+                            break;
+                        }
+                    }
+
+                    $this->entries[] = new RITQ_ContactEntry( $name, $title,
+                        $email, $picture );
+                }
+            }
+        }
     }
 
-    public function getName()
+    public function getEntry( $i )
     {
-        return $this->name;
+        return $this->entries[$i];
     }
 
-    public function getTitle()
+    public function getEntries()
     {
-        return $this->title;
+        return $this->entries;
     }
 
-    public function getEmail()
+    public function getEntryRange( $start, $end )
     {
-        return $this->email;
+        $subentries = array();
+        $limit = min( $end, count( $this->entries ) );
+
+        for ( $i = $start; $i < $limit; $i += 1 )
+        {
+            $subentries[] = $this->entries[$i];
+        }
+
+        return $subentries;
     }
 
-    public function getPicture()
+    public function getEntryCount()
     {
-        return $this->picture;
+        return count( $this->entries );
     }
-
 }
 ?>
