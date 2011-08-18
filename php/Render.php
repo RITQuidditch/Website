@@ -7,7 +7,7 @@ class RITQ_Render
     function header()
     {
         echo '<div class="header">'."\n";
-        echo '<img src="images/banner.png" />'."\n";
+        echo '<a href="index.php" ><img border="0" src="images/banner.png" /></a>'."\n";
         echo '<div class="nav_bar">'."\n";
         echo '<a class="nav_button" href="index.php">HOME</a>'."\n";
         echo '<a class="nav_button" href="about.php">ABOUT</a>'."\n";
