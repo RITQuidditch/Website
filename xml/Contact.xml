@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<contact>
+    <entry>
+        <name>Mark Oswald</name>
+        <title>President</title>
+        <email>mxo6749@rit.edu</email>
+        <picture>images/NOBIGPIC.png</picture>
+    </entry>
+    <entry>
+        <name>Allison Rabent</name>
+        <title>Vice President</title>
+        <email>alr4676@rit.edu</email>
+        <picture>images/NOBIGPIC.png</picture>
+    </entry>
+    <entry>
+        <name>Sam Bankowski</name>
+        <title>Treasurer</title>
+        <email>sjb15990@rit.edu</email>
+        <picture>images/NOBIGPIC.png</picture>
+    </entry>
+    <entry>
+        <name>Josh Kramer</name>
+        <title>Secretary</title>
+        <email>jdk3414@rit.edu</email>
+        <picture>images/NOBIGPIC.png</picture>
+    </entry>
+    <entry>
+        <name>Jeff Sherman</name>
+        <title>Captain</title>
+        <email>jms7005@rit.edu</email>
+        <picture>images/NOBIGPIC.png</picture>
+    </entry>
+</contact>

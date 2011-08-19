@@ -2,82 +2,99 @@
 
 require_once( "php/News.php" );
 require_once( "php/Date.php" );
-require_once( "Zend/Gdata.php" );
-require_once( "Zend/Gdata/ClientLogin.php" );
-require_once( "Zend/Gdata/Query.php" );
-require_once( "Zend/Gdata/Feed.php" );
 
 class RITQ_NewsFactory
 {
-    private $feed = null;
+    private $entries = array();
 
-    public function __construct( $user, $pass, $blogID )
+    public function __construct( $newsdir )
     {
-        $client = Zend_Gdata_ClientLogin::getHttpClient($user, $pass, 'blogger', null, Zend_Gdata_ClientLogin::DEFAULT_SOURCE, null, null, Zend_Gdata_ClientLogin::CLIENTLOGIN_URI, 'GOOGLE' );
-        $gdClient = new Zend_Gdata( $client );
-        $query = new Zend_Gdata_Query( 'http://www.blogger.com/feeds/'.$blogID.'/posts/default' );
-        $this->feed = $gdClient->getFeed( $query );
+        $handle = opendir( $newsdir );
+        while ( false !== ( $file = readdir( $handle ) ) )
+        {
+            if ( substr( $file, 0, 1 ) == "." )
+            {
+                continue;
+            }
+
+            $xmlDoc = new DOMDocument();
+            $xmlDoc->load( $newsdir . "/" . $file );
+
+            $title = "No Title";
+            $date = "No Date";
+            $content = "No Content";
+
+            $root = $xmlDoc->documentElement;
+            if ( $root->nodeName == "news" )
+            {
+                foreach ( $root->childNodes AS $newsNode )
+                {
+                    switch ( $newsNode->nodeName )
+                    {
+                    case "title":
+                        $title = $newsNode->textContent;
+                        break;
+                    case "date":
+                        $year = substr( $newsNode->textContent, 0, 4 );
+                        $month = substr( $newsNode->textContent, 4, 2 );
+                        $day = substr( $newsNode->textContent, 6, 2 );
+                        $date = new RITQ_Date( $year, $month, $day );
+                        break;
+                    case "content":
+                        $content = $newsNode->textContent;
+                        break;
+                    }
+                }
+            }
+
+            $this->entries[] = new RITQ_News( $title, $date, $content );
+        }
+
+        $changes = 0;
+        $k = count( $this->entries ) - 1;
+        do {
+            $changes = 0;
+            for ( $i = 0; $i < $k; $i += 1 )
+            {
+                if ( strcmp( $this->entries[$i]->getDate()->getNumeric(),
+                     $this->entries[$i + 1]->getDate()->getNumeric() ) < 0 )
+                {
+                    $tmp = $this->entries[$i];
+                    $this->entries[$i] = $this->entries[$i + 1];
+                    $this->entries[$i + 1] = $tmp;
+                    $changes += 1;
+                }
+            }
+            $k -= 1;
+        } while ( $changes != 0 );
     }
 
     public function getNews()
     {
-        return $this->getNewsInterval( 0, $this->feed->count() );
+        return $this->getNewsInterval( 0, count( $this->entries ) );
     }
 
     public function getNewsIndex( $index )
     {
-        $entry = $this->feed->entries[ $index ];
-
-        $rawdate = $entry->published;
-        $year = substr( $rawdate, 0, 4 );
-        $month = substr( $rawdate, 5, 2 );
-        if ( substr( $month, 0, 1 ) == "0" )
-        {
-            $month = substr( $month, 1, 1 );
-        }
-        $day = substr( $rawdate, 8, 2 );
-        if ( substr( $day, 0, 1 ) == "0" )
-        {
-            $day= substr( $day, 1, 1 );
-        }
-        $hour = substr( $rawdate, 11, 2 );
-        if ( substr( $hour , 0, 1 ) == "0" )
-        {
-            $hour = substr( $hour , 1, 1 );
-        }
-        $minute = substr( $rawdate, 14, 2 );
-        if ( substr( $minute , 0, 1 ) == "0" )
-        {
-            $minute = substr( $minute , 1, 1 );
-        }
-        $second = substr( $rawdate, 17, 2 );
-        if ( substr( $second , 0, 1 ) == "0" )
-        {
-            $second = substr( $second , 1, 1 );
-        }
-
-        $title = $entry->title;
-        $date = new RITQ_Date( $year, $month, $day, $hour, $minute, $second );
-        $content = $entry->content;
-        
-        return new RITQ_News( $title, $date, $content );
-
+        return $this->entries[ $index ];
     }
 
     public function getNewsInterval( $start, $end )
     {
-        $limit = min( $end, $this->feed->count() );
         $result = array();
+        $limit = min( $end, count( $this->entries ) );
+
         for ( $i = $start; $i < $limit; $i += 1 )
         {
-            $result[] = $this->getNewsIndex( $i );
+            $result[] = $this->entries[ $i ];
         }
+
         return $result;
     }
 
     public function getNewsCount()
     {
-        return $feed->count();
+        return count( $this->entries );
     }
 
 }

@@ -31,7 +31,7 @@
             <p class="notice">All the (Quidditch) News That's Fit to Print</p>
 
             <?php
-                $factory = new RITQ_NewsFactory( $info->getUser(), $info->getPass(), $info->getBlogId() );
+                $factory = new RITQ_NewsFactory( "./news" );
 
                 $newslist = $factory->getNewsInterval( 0, 5 );
                 foreach ( $newslist AS $news )
