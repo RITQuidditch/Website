@@ -1,6 +1,6 @@
 <?php
 
-require_once( "php/Contact.php" );
+require_once( "php/ContactEntry.php" );
 
 class RITQ_Render
 {

@@ -31,6 +31,19 @@ class RITQ_Date
         return $this->$key;
     }
 
+    public function getNumeric()
+    {
+        $year = $this->year;
+        $month = ( ( strlen( $this->month ) < 2 ) ? "0" : "" ) . $this->month;
+        $day = ( ( strlen( $this->day ) < 2 ) ? "0" : "" ) . $this->day;
+        $hour = ( ( strlen( $this->hour ) < 2 ) ? "0" : "" ) . $this->hour;
+        $minute = ( ( strlen( $this->minute ) < 2 ) ? "0" : "" ) .
+                                                                $this->minute;
+        $second = ( ( strlen( $this->second ) < 2 ) ? "0" : "" ) . 
+                                                                $this->second;
+        return $year . $month . $day . $hour . $minute . $second;
+    }
+
     public function getHourTwelve()
     {
         $newhour = intval( $hour );

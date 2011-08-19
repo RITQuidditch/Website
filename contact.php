@@ -6,7 +6,7 @@
     <?php 
         require_once( "php/Render.php" );
         require_once( "php/Contact.php" );
-        require_once( "php/ContactFactory.php" );
+        require_once( "php/ContactEntry.php" );
         require_once( "php/Info.php" );
     ?>
     <!-- CSS -->
@@ -35,8 +35,8 @@
             </p>
 
             <?php
-            $conFact = new RITQ_ContactFactory( $info->getUser(), $info->getPass(), $info->getContactsId(), $info->getContactsWS() );
-            $contacts = $conFact->getContacts();
+            $contact = new RITQ_Contact( "xml/Contact.xml" );
+            $contacts = $contact->getEntries();
             foreach ( $contacts as $contact )
             {
                 $render->contact( $contact );
