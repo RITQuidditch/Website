@@ -1,0 +1,4 @@
+RewriteEngine on
+
+RewriteRule ^$ index.php
+RewriteRule ^([a-z]*)$ $1.php [NC]
